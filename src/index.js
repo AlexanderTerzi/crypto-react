@@ -5,9 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/Home';
 import Crypto from './pages/Crypto';
 import Trending from './pages/Trending';
+import Favorites from './pages/Favorites';
 
 import './index.css';
-import Favorites from './pages/Favorites';
+import CryptoDetails from './components/CryptoDetails';
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Crypto />
+        element: <Crypto />,
+        children: [
+          {
+            path: ":coinId",
+            element: <CryptoDetails />
+          }
+        ]
       },
       {
         path: "/trending",
@@ -33,7 +40,5 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );

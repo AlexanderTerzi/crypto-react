@@ -4,6 +4,7 @@ import { CryptoContext } from '../pages/Home';
 import Pagination from './Pagination';
 
 import coinGeckoLogo from '../assets/img/coingecko-logo.webp';
+import { Link } from 'react-router-dom';
 
 const Table = () => {
 
@@ -53,16 +54,23 @@ const Table = () => {
                                                             </defs>
                                                         </svg>
                                                     </button>
-                                                    <img
-                                                        className='w-[1.2rem] h-[1.2rem] mx-1.5 mt-[2px]'
-                                                        src={data.image}
-                                                        alt={data.name}
-                                                    />
-                                                    <span className='mt-[4px]'>
-                                                        {data.symbol}
-                                                    </span>
+                                                    <Link to={`/${data.id}`} className='flex items-center'>
+                                                        <img
+                                                            className='w-[1.2rem] h-[1.2rem] mx-1.5 mt-[2px]'
+                                                            src={data.image}
+                                                            alt={data.name}
+                                                        />
+                                                        <span className='mt-[4px]'>
+                                                            {data.symbol}
+                                                        </span>
+                                                    </Link>
+
                                                 </td>
-                                                <td className='py-4'>{data.name}</td>
+                                                <td className='py-4'>
+                                                    <Link to={`/${data.id}`}>
+                                                        {data.name}
+                                                    </Link>
+                                                </td>
                                                 <td className='py-4'>
                                                     {
                                                         new Intl.NumberFormat("en-In", {

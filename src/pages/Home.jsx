@@ -1,6 +1,7 @@
-import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import axios from 'axios';
 
 import Logo from '../components/Logo';
 import Navigation from '../components/Navigation';
@@ -15,11 +16,13 @@ const Home = () => {
     const [sortBy, setSortBy] = useState('market_cap_desc');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     useEffect(() => {
         const getCryptoData = async () => {
             try {
-                const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=10&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`)
+                const { data } = await axios.get
+                    (`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=${itemsPerPage}&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`)
                 setCryptoData(data);
             } catch (error) {
                 console.log(error);
@@ -39,7 +42,8 @@ const Home = () => {
 
         getTotalNumber();
         getCryptoData();
-    }, [coinSearch, currency, sortBy, page]);
+
+    }, [coinSearch, currency, sortBy, page, itemsPerPage]);
 
     const getSearchResult = async (query) => {
         try {
@@ -52,8 +56,13 @@ const Home = () => {
         }
     };
 
+    const resetPage = () => {
+        setPage(1);
+        setCoinSearch('');
+    }
+
     return (
-        <CryptoContext.Provider value={{ cryptoData, searchData, setSearchData, getSearchResult, setCoinSearch, setCurrency, currency, sortBy, setSortBy, page, setPage, totalPages }}>
+        <CryptoContext.Provider value={{ cryptoData, searchData, setSearchData, getSearchResult, setCoinSearch, setCurrency, currency, sortBy, setSortBy, page, setPage, totalPages, resetPage, setItemsPerPage, itemsPerPage }}>
             <main className='w-full h-full flex flex-col content-center items-center relative text-white font-RobotoCondensed'>
                 <div className='w-screen h-screen bg-gray-300 fixed -z-10'></div>
                 <Logo />
