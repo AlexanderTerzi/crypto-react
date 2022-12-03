@@ -90,20 +90,24 @@ const Graph = ({ coinId }) => {
         <div className='w-full h-[60%]'>
             <GraphComponent data={graphData} currency={currency} type={type} />
             <div className='flex'>
-                {typeData && typeData.map((item, i) => {
+                {typeData && typeData.map((item) => {
                     return (
                         <button
                             className={`capitalize text-sm py-0.5 bg-opacity-25 px-1.5 ml-2 rounded ${type === item.type ? 'bg-cyan text-white' : 'bg-gray-200 text-cyan'}`}
-                            onClick={() => setType(item.type)}>
+                            onClick={() => setType(item.type)}
+                            key={item.type}
+                        >
                             {item.name}
                         </button>
                     )
                 })}
-                {daysData && daysData.map((item, i) => {
+                {daysData && daysData.map((item) => {
                     return (
                         <button
                             className={`capitalize text-sm py-0.5 bg-opacity-25 px-1.5 ml-2 rounded ${days === item.day ? 'bg-cyan text-white' : 'bg-gray-200 text-cyan'}`}
-                            onClick={() => setDays(item.day)}>
+                            onClick={() => setDays(item.day)}
+                            key={item.day}
+                        >
                             {item.name}
                         </button>
                     )

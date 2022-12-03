@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/Home';
 import Crypto from './pages/Crypto';
 import Trending from './pages/Trending';
-import Favorites from './pages/Favorites';
+import Saved from './pages/Saved';
 
 import './index.css';
 import CryptoDetails from './components/CryptoDetails';
@@ -28,11 +28,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/trending",
-        element: <Trending />
+        element: <Trending />,
+        children: [
+          {
+            path: ":coinId",
+            element: <CryptoDetails />
+          }
+        ]
       },
       {
-        path: "/favorites",
-        element: <Favorites />
+        path: "/saved",
+        element: <Saved />,
+        children: [
+          {
+            path: ":coinId",
+            element: <CryptoDetails />
+          }
+        ]
       },
     ],
   },

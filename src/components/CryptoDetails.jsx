@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { CryptoContext } from '../pages/Home';
 import Graph from './Graph';
+import Spinner from './UI/Spinner';
 
 const PriceIndicator = ({ currentPrice, highPrice, lowPrice }) => {
     const [greenIndicator, setGreenIndicator] = useState();
@@ -43,6 +44,7 @@ const CryptoDetails = () => {
 
     useEffect(() => {
         const getCoinData = async (coinId) => {
+            setCoinData();
             try {
                 const { data } = await axios.get
                     (`https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=true&sparkline=false`)
@@ -55,9 +57,7 @@ const CryptoDetails = () => {
 
         getCoinData(coinId);
 
-    }, [coinId])
-
-    console.log(coinData)
+    }, [coinId]);
 
     const closePage = () => {
         navigate("..")
@@ -70,7 +70,7 @@ const CryptoDetails = () => {
             <div
                 onClick={(e) => e.stopPropagation()}
                 className='w-[65%] h-[75%] bg-gray-300 bg-opacity-75 rounded-lg text-white relative'>
-                {coinData && (
+                {coinData ? (
                     <div className='flex items-center justify-between h-full w-full p-4'>
                         <div className='flex flex-col w-[45%] h-full pr-2'>
                             <div className='flex w-full items-center'>
@@ -135,18 +135,20 @@ const CryptoDetails = () => {
                                     </h2>
                                 </div>
                                 <div className='flex flex-col'>
-                                    <span className='text-sm capitalize text-gray-100'>
-                                        fully diluted valuation
-                                    </span>
-                                    <h2 className='text-base font-bold'>
-                                        {
-                                            new Intl.NumberFormat("en-In", {
-                                                style: 'currency',
-                                                currency: currency,
-                                                notation: 'compact'
-                                            }).format(coinData.market_data.fully_diluted_valuation[currency])
-                                        }
-                                    </h2>
+                                    {coinData.market_data.fully_diluted_valuation[currency] && <>
+                                        <span className='text-sm capitalize text-gray-100'>
+                                            fully diluted valuation
+                                        </span>
+                                        <h2 className='text-base font-bold'>
+                                            {
+                                                new Intl.NumberFormat("en-In", {
+                                                    style: 'currency',
+                                                    currency: currency,
+                                                    notation: 'compact'
+                                                }).format(coinData.market_data.fully_diluted_valuation[currency])
+                                            }
+                                        </h2>
+                                    </>}
                                 </div>
                             </div>
                             <div className='flex flex-col w-full mt-4 justify-between'>
@@ -422,7 +424,8 @@ const CryptoDetails = () => {
                             </a>}
                         </div>
                     </div>
-                )}
+                )
+                    : <Spinner classes={'w-full min-h-[60vh] h-full flex justify-center flex-col items-center'} />}
             </div>
         </div>,
         document.getElementById('popup')

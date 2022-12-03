@@ -2,8 +2,6 @@ import React, { useContext, useRef } from 'react';
 
 import { CryptoContext } from '../pages/Home';
 
-import resetIcon from '../assets/img/reset.svg';
-
 const sortTypes = [
     { value: 'market_cap_desc', name: 'market cap desc' },
     { value: 'market_cap_asc', name: 'market cap asc' },

@@ -15,8 +15,8 @@ const Navigation = () => {
             <NavLink to='/trending' className={navLinkStyles}>
                 Trending
             </NavLink>
-            <NavLink to='/favorites' className={navLinkStyles}>
-                Favorites
+            <NavLink to='/saved' className={navLinkStyles}>
+                Saved
             </NavLink>
         </nav>
     );

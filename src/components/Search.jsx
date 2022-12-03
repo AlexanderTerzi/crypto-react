@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 
 import { CryptoContext } from '../pages/Home';
@@ -12,9 +12,10 @@ const Search = () => {
 
     const { searchData, getSearchResult, setCoinSearch, setSearchData } = useContext(CryptoContext);
 
-    const handleSearch = debounce((val) => {
+    const handleSearch = useCallback(debounce(function (val) {
         getSearchResult(val);
-    }, 1500);
+        console.log(val)
+    }, 2000), []);
 
     const handleChangeInput = () => {
         const query = inputRef.current.value;
@@ -51,7 +52,7 @@ const Search = () => {
                 </span>
             </li>
         )
-    })
+    });
 
     return (
         <div className='relative'>
@@ -80,7 +81,7 @@ const Search = () => {
                     <ul className='absolute top-11 right-0 w-96 h-96 rounded overflow-x-hidden py-2 bg-gray-200 bg-opacity-60 backdrop-blur-md scrollbar-thin scrollbar-thumb-gray-100'>
                         {searchData
                             ? searchList
-                            : <Spinner />}
+                            : <Spinner classes={'w-full h-full flex justify-center flex-col items-center'} />}
                     </ul>
                 )
             }
