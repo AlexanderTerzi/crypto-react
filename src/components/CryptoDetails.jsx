@@ -69,10 +69,10 @@ const CryptoDetails = () => {
             className='fixed top-0 w-full h-full bg-gray-200 bg-opacity-30 backdrop-blur-sm flex items-center justify-center font-RobotoCondensed'>
             <div
                 onClick={(e) => e.stopPropagation()}
-                className='w-[65%] h-[75%] bg-gray-300 bg-opacity-75 rounded-lg text-white relative'>
+                className='w-[65%] min-h-[65%] bg-gray-300 bg-opacity-75 rounded-lg text-white relative'>
                 {coinData ? (
-                    <div className='flex items-center justify-between h-full w-full p-4'>
-                        <div className='flex flex-col w-[45%] h-full pr-2'>
+                    <div className='flex lg:flex-col items-center justify-between h-full w-full p-4 ssm:p-1'>
+                        <div className='flex flex-col w-[45%] lg:w-[90%] h-full pr-2'>
                             <div className='flex w-full items-center'>
                                 <img
                                     className='w-[3rem] h-[3rem] mx-1.5'
@@ -81,7 +81,7 @@ const CryptoDetails = () => {
                                 <h1 className='text-xl capitalize font-medium'>
                                     {coinData.name}
                                 </h1>
-                                <span className='text-sm py-0.5 px-2.5 ml-2 bg-cyan text-cyan bg-opacity-25 rounded uppercase'>
+                                <span className='text-sm py-0.5 px-2.5 ml-2 bg-cyan text-cyan bg-opacity-25 rounded uppercase ssm:hidden'>
                                     {coinData.symbol}
                                 </span>
                             </div>
@@ -119,7 +119,7 @@ const CryptoDetails = () => {
                                     </h2>
                                 </div>
                             </div>
-                            <div className='flex w-full mt-4 justify-between'>
+                            <div className='flex w-full mt-4 justify-between ssm:flex-col'>
                                 <div className='flex flex-col'>
                                     <span className='text-sm capitalize text-gray-100'>
                                         Market Cap
@@ -134,7 +134,7 @@ const CryptoDetails = () => {
                                         }
                                     </h2>
                                 </div>
-                                <div className='flex flex-col'>
+                                <div className='flex flex-col ssm:mt-4'>
                                     {coinData.market_data.fully_diluted_valuation[currency] && <>
                                         <span className='text-sm capitalize text-gray-100'>
                                             fully diluted valuation
@@ -171,7 +171,7 @@ const CryptoDetails = () => {
                                     highPrice={coinData.market_data.high_24h[currency]}
                                     lowPrice={coinData.market_data.low_24h[currency]} />
                             </div>
-                            <div className='flex w-full mt-4 justify-between'>
+                            <div className='flex w-full mt-4 justify-between ssm:hidden'>
                                 <div className='flex flex-col'>
                                     <span className='text-sm capitalize text-gray-100'>
                                         Low 24H
@@ -201,7 +201,7 @@ const CryptoDetails = () => {
                                     </h2>
                                 </div>
                             </div>
-                            <div className='flex w-full mt-4 justify-between'>
+                            <div className='flex w-full mt-4 justify-between ssm:hidden'>
                                 <div className='flex flex-col'>
                                     <span className='text-sm capitalize text-gray-100'>
                                         Max supply
@@ -231,7 +231,7 @@ const CryptoDetails = () => {
                                     </h2>
                                 </div>
                             </div>
-                            <div className='flex w-full mt-4 justify-between'>
+                            <div className='flex w-full mt-4 justify-between ssm:flex-col'>
                                 <div className='flex flex-col'>
                                     <a href={coinData?.links?.homepage[0]}
                                         target="_blank"
@@ -296,7 +296,7 @@ const CryptoDetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-col w-[55%] h-full pl-3'>
+                        <div className='flex flex-col w-[55%] h-full pl-3 ssm:hidden'>
                             <Graph coinId={coinData.id} />
                             <div className='flex flex-col mt-4'>
                                 <h3 className='text-white py-1'>
@@ -319,7 +319,7 @@ const CryptoDetails = () => {
                                 </h3>
                             </div>
                         </div>
-                        <div className='absolute bottom-8 right-8 flex items-center'>
+                        <div className='absolute bottom-8 right-8 flex items-center lg:static'>
                             {coinData.links.facebook_username && <a
                                 className='text-lg px-1'
                                 href={`https://facebook.com/${coinData.links.facebook_username}`}

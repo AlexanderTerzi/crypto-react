@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Crypto />,
         children: [
           {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "/trending",
+        path: "trending",
         element: <Trending />,
         children: [
           {
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "/saved",
+        path: "saved",
         element: <Saved />,
         children: [
           {

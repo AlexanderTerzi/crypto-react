@@ -87,7 +87,7 @@ const Graph = ({ coinId }) => {
     }, [coinId, type, days])
 
     return (
-        <div className='w-full h-[60%]'>
+        <div className='w-full h-[350px] lg:hidden'>
             <GraphComponent data={graphData} currency={currency} type={type} />
             <div className='flex'>
                 {typeData && typeData.map((item) => {
