@@ -6,10 +6,13 @@ import Sort from './Sort';
 
 const Filters = () => {
     return (
-        <div className='w-full h-12 border-2 border-gray-100 rounded-lg flex items-center justify-between relative'>
+        <div className='w-full py-1.5 border-2 border-gray-100 rounded-lg flex items-center justify-between relative lg:block'>
             <Search />
-            <Currency />
-            <Sort />
+            <div className='flex lg:mt-2 justify-center items-center sm:flex-col '>
+                <Currency />
+                <Sort />
+            </div>
+
         </div>
     );
 };

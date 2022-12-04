@@ -25,14 +25,14 @@ const Sort = () => {
 
     return (
         <div className='flex'>
-            <label className='relative flex justify-center items-center mr-7'>
+            <label className='flex justify-center items-center mr-14 md:mr-0 sm:mt-2'>
                 <span className='font-bold mr-2'>
                     sort by:
                 </span>
                 <select
                     name="sortby"
                     id="sortby"
-                    className='rounded bg-gray-200 text-base pl-2 pr-10 py-1 leading-4 capitalize outline-0 focus:outline-0'
+                    className='rounded bg-gray-200 text-base pl-2 pr-10 py-1 leading-4 capitalize outline-0 focus:outline-0 xl:pr-4'
                     ref={sortRef}
                     onChange={handleSortChange}
                 >
@@ -50,7 +50,7 @@ const Sort = () => {
             <button
                 onClick={resetPage}
                 title="reset"
-                className='w-[2rem] mr-4 transition-all transition-ease hover:-rotate-[10deg]'>
+                className='w-[2rem] mr-4 transition-all transition-ease hover:-rotate-[10deg] absolute top-1 right-0 sm:mr-2'>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="1em"

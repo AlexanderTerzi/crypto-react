@@ -26,28 +26,14 @@ const Currency = () => {
     }
 
     return (
-        <div className='flex mr-7'>
+        <div className='flex mr-7 md:mr-0'>
             <form
-                className='relative flex items-center font-RobotoCondensed mr-12'>
+                className='relative flex items-center font-RobotoCondensed mr-12 xl:mr-0 xl:ml-2'>
                 <label
-                    className='relative flex justify-center items-center mr-2 font-bold'
+                    className='relative flex justify-center items-center mr-2 font-bold md:mr-0'
                     htmlFor="currency">
                     currency
                 </label>
-                {/* <input
-                    ref={currencyRef}
-                    type="text"
-                    name="currency"
-                    id="currency"
-                    placeholder='usd'
-                    className='w-16 rounded bg-gray-200 placeholder:text-gray-100 pl-2 required outline-0 border border-transparent focus:border-cyan ease-in duration-200 leading-4'
-                />
-                <button type='submit' className='ml-1 cursor-pointer'>
-                    <img
-                        className='w-full h-auto'
-                        src={submitIcon}
-                        alt="Submit" />
-                </button> */}
                 <select
                     name="currency"
                     id="currency"

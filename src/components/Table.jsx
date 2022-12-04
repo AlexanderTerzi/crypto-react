@@ -24,11 +24,11 @@ const Table = () => {
                                     <th className='py-1'>assets</th>
                                     <th className='py-1'>name</th>
                                     <th className='py-1'>price</th>
-                                    <th className='py-1'>total volume</th>
-                                    <th className='py-1'>market cap change, %</th>
-                                    <th className='py-1 lg:table-cell hidden'>1H, %</th>
-                                    <th className='py-1 lg:table-cell hidden'>24H, %</th>
-                                    <th className='py-1 lg:table-cell hidden'>7D, %</th>
+                                    <th className='py-1 ssm:hidden'>total volume</th>
+                                    <th className='py-1 md:hidden'>market cap change, %</th>
+                                    <th className='py-1 table-cell lg:hidden'>1H, %</th>
+                                    <th className='py-1 table-cell lg:hidden'>24H, %</th>
+                                    <th className='py-1 table-cell lg:hidden'>7D, %</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +37,7 @@ const Table = () => {
                                         return (
                                             <tr
                                                 key={data.id}
-                                                className='text-center text-base border-b border-gray-100 hover:bg-gray-200 ease-in duration-200 last:border-0'>
+                                                className='text-center text-base border-b border-gray-100 hover:bg-gray-200 ease-in duration-200 last:border-0 ssm:text-sm'>
                                                 <td className='py-4 flex items-center uppercase'>
                                                     <SaveBtn data={data} />
                                                     <Link to={`/${data.id}`} className='flex items-center'>
@@ -46,7 +46,7 @@ const Table = () => {
                                                             src={data.image}
                                                             alt={data.name}
                                                         />
-                                                        <span className='mt-[4px]'>
+                                                        <span>
                                                             {data.symbol}
                                                         </span>
                                                     </Link>
@@ -65,18 +65,18 @@ const Table = () => {
                                                         }).format(data.current_price)
                                                     }
                                                 </td>
-                                                <td className='py-4'>{data.total_volume}</td>
-                                                <td className='py-4'>{data.market_cap_change_percentage_24h}</td>
+                                                <td className='py-4 ssm:hidden'>{data.total_volume}</td>
+                                                <td className='py-4 md:hidden'>{data.market_cap_change_percentage_24h}</td>
                                                 <td
-                                                    className={`${data.price_change_percentage_1h_in_currency > 0 ? 'text-green py-4' : 'text-red py-4'} lg:table-cell hidden`}>
+                                                    className={`${data.price_change_percentage_1h_in_currency > 0 ? 'text-green py-4' : 'text-red py-4'} table-cell lg:hidden`}>
                                                     {Number(data.price_change_percentage_1h_in_currency).toFixed(2)}
                                                 </td>
                                                 <td
-                                                    className={`${data.price_change_percentage_24h_in_currency > 0 ? 'text-green py-4' : 'text-red py-4'} lg:table-cell hidden`}>
+                                                    className={`${data.price_change_percentage_24h_in_currency > 0 ? 'text-green py-4' : 'text-red py-4'} table-cell lg:hidden`}>
                                                     {Number(data.price_change_percentage_24h_in_currency).toFixed(2)}
                                                 </td>
                                                 <td
-                                                    className={`${data.price_change_percentage_7d_in_currency > 0 ? 'text-green py-4' : 'text-red py-4'} lg:table-cell hidden`}>
+                                                    className={`${data.price_change_percentage_7d_in_currency > 0 ? 'text-green py-4' : 'text-red py-4'} table-cell lg:hidden`}>
                                                     {Number(data.price_change_percentage_7d_in_currency).toFixed(2)}
                                                 </td>
                                             </tr>
@@ -89,7 +89,7 @@ const Table = () => {
                         : <Spinner classes={'w-full min-h-[60vh] h-full flex justify-center flex-col items-center'} />
                 }
             </div>
-            <div className='flex items-center justify-between mt-4 capitalize h-[2rem]'>
+            <div className='flex items-center justify-between mt-4 capitalize h-[2rem] lg:flex-col'>
                 <span className='flex items-center'>
                     Data provided by&nbsp;
                     <a

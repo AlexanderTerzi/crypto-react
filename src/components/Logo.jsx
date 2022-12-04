@@ -10,7 +10,7 @@ const Logo = () => {
         <Link to='/' className={linkStyles}>
             <img src={logoImg} alt="Crypto" />
             <span>
-                Crypto
+                Crypto 24/7
             </span>
         </Link>
     );

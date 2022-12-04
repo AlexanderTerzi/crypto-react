@@ -24,7 +24,7 @@ const Trending = () => {
     }, []);
 
     return (
-        <section className='w-[80%] h-full flex-col mt-16 mb-24 relative'>
+        <section className='w-[80%] h-full flex-col mt-16 mb-24 relative md:mt-8'>
             <div className='w-full min-h-[60vh] py-8 flex flex-wrap justify-evenly border border-gray-100 rounded'>
                 {trendData && trendData.coins.map((item) =>
                     <TrendingItem data={item.item} key={item.item.id} />

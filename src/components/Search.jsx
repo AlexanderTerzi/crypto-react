@@ -57,7 +57,7 @@ const Search = () => {
     return (
         <div className='relative'>
             <form
-                className='w-96 relative flex items-center ml-7 font-RobotoCondensed'
+                className='w-96 xl:w-72 lg:w-[85%] sm:w-[80%] ssm:w-[70%] relative flex items-center ml-7 font-RobotoCondensed'
                 onSubmit={handleSubmit}
             >
                 <input

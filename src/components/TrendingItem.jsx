@@ -10,7 +10,7 @@ const TrendingItem = ({ data }) => {
     };
 
     return (
-        <div className='w-[40%] bg-gray-200 mb-12 last:mb-0 rounded-lg p-4 relative cursor-pointer hover:bg-gray-100 hover:bg-opacity-40 ease-in duration-200'
+        <div className='w-[40%] lg:w-[90%] bg-gray-200 mb-12 last:mb-0 rounded-lg p-4 relative cursor-pointer hover:bg-gray-100 hover:bg-opacity-40 ease-in duration-200'
             onClick={() => getCoinDetails(data.id)}>
             {data ? <>
                 <h3 className='text-base flex items-center my-0.5'>
@@ -56,7 +56,7 @@ const TrendingItem = ({ data }) => {
                     </span>
                 </h3>
                 <img
-                    className='w-[35%] h-auto rounded-full absolute top-2/4 -right-12 -translate-y-2/4'
+                    className='w-auto h-[150px] lg:h-[100px] ssm:hidden rounded-full absolute top-2/4 -right-12 lg:right-2 -translate-y-2/4'
                     src={data.large} alt={data.name}
                 />
             </>

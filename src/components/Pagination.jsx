@@ -23,7 +23,7 @@ const ItemsPerPage = () => {
 
     return (
         <form
-            className='relative flex items-center font-RobotoCondensed mr-12'
+            className='relative flex items-center font-RobotoCondensed mr-12 sm:mr-0'
             onSubmit={handlePerPageSubmit}>
             <label
                 className='relative flex justify-center items-center mr-2 font-bold'
@@ -89,9 +89,9 @@ const Pagination = () => {
 
     if (cryptoData && cryptoData.length >= itemsPerPage) {
         return (
-            <div className='flex items-center'>
+            <div className='flex items-center lg:mt-3 sm:flex-col'>
                 <ItemsPerPage />
-                <ul className='flex items-center justify-end text-sm'>
+                <ul className='flex items-center justify-end text-sm sm:mt-3'>
                     <li className='flex items-center'>
                         <button
                             onClick={prevPage}
