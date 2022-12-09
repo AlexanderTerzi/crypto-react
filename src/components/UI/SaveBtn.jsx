@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
-
-import { CryptoContext } from '../../pages/Home';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSavedCoins } from '../../redux/slices/savedCoinsSlice';
 
 const SaveBtn = ({ data }) => {
-    const { checkCoin, savedCoins } = useContext(CryptoContext);
+    const dispatch = useDispatch();
+    const { savedCoins } = useSelector(state => state.savedCoins);
 
     const handleCLickSave = (e) => {
         e.preventDefault();
-        checkCoin(data.id);
+        dispatch(setSavedCoins(data.id))
     };
 
     return (

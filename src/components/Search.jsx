@@ -1,20 +1,27 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
-import debounce from 'lodash.debounce';
+import React, { useCallback, useRef, useState } from 'react';
 
-import { CryptoContext } from '../pages/Home';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSearchResult, setCoinSearch, setSearchData } from '../redux/slices/filtersSlice';
+
+import debounce from 'lodash.debounce';
 
 import searchIcon from '../assets/img/search-icon.svg';
 import Spinner from './UI/Spinner';
 
 const Search = () => {
+    const dispatch = useDispatch();
+
+    const { searchData } = useSelector(state => state.filters);
+
     const [searchValue, setSearchValue] = useState('');
     const inputRef = useRef(null);
 
-    const { searchData, getSearchResult, setCoinSearch, setSearchData } = useContext(CryptoContext);
+    const getSearchResult = async (query) => {
+        dispatch(fetchSearchResult(query))
+    };
 
     const handleSearch = useCallback(debounce(function (val) {
         getSearchResult(val);
-        console.log(val)
     }, 2000), []);
 
     const handleChangeInput = () => {
@@ -30,9 +37,9 @@ const Search = () => {
     }
 
     const selectCoin = (coin) => {
-        setCoinSearch(coin);
+        dispatch(setCoinSearch(coin));
         setSearchValue('');
-        setSearchData('');
+        dispatch(setSearchData(''));
     };
 
     const searchList = searchData && searchData.map((item) => {
@@ -54,6 +61,11 @@ const Search = () => {
         )
     });
 
+    const clearResult = () => {
+        setSearchValue('');
+        dispatch(setSearchData(''));
+    }
+
     return (
         <div className='relative'>
             <form
@@ -69,11 +81,22 @@ const Search = () => {
                     ref={inputRef}
                     onChange={handleChangeInput}
                 />
+                {searchData && <button
+                    className='absolute right-8 cursor-pointer'
+                    onClick={clearResult}>
+                    <svg
+                        className="search__clear h-4 w-4"
+                        viewBox="0 0 20 20"
+                        fill='cyan'
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+                    </svg>
+                </button>}
                 <button
                     className='absolute right-1 cursor-pointer'
                     type="submit"
                 >
-                    <img className='w-full h-auto' src={searchIcon} alt="search" />
+                    <img className='w-full h-auto mt-[2px]' src={searchIcon} alt="search" />
                 </button>
             </form>
             {
@@ -82,10 +105,18 @@ const Search = () => {
                         {searchData
                             ? searchList
                             : <Spinner classes={'w-full h-full flex justify-center flex-col items-center'} />}
+                        {
+                            searchList.length === 0 && (
+                                <span className='w-full h-full flex justify-center flex-col items-center'>
+                                    No results
+                                </span>
+                            )
+                        }
                     </ul>
                 )
             }
-        </div>
+
+        </div >
     );
 };
 

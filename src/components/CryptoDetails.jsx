@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCoinData } from '../redux/slices/coinDetailsSlice';
 
-import { CryptoContext } from '../pages/Home';
 import Graph from './Graph';
 import Spinner from './UI/Spinner';
 
@@ -38,21 +38,14 @@ const PriceIndicator = ({ currentPrice, highPrice, lowPrice }) => {
 const CryptoDetails = () => {
     const { coinId } = useParams();
     const navigate = useNavigate();
-    const { currency } = useContext(CryptoContext);
-    const [coinData, setCoinData] = useState();
+    const dispatch = useDispatch();
 
+    const { currency } = useSelector(state => state.filters);
+    const { coinData } = useSelector(state => state.coinDetail);
 
     useEffect(() => {
         const getCoinData = async (coinId) => {
-            setCoinData();
-            try {
-                const { data } = await axios.get
-                    (`https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=true&sparkline=false`)
-                setCoinData(data);
-            } catch (error) {
-                console.log(error);
-                alert('Server error')
-            }
+            dispatch(fetchCoinData(coinId))
         }
 
         getCoinData(coinId);

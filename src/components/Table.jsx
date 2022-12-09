@@ -1,23 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { CryptoContext } from '../pages/Home';
+import { useSelector } from 'react-redux';
 
 import Pagination from './Pagination';
 import SaveBtn from './UI/SaveBtn';
 import Spinner from './UI/Spinner';
-
 import coinGeckoLogo from '../assets/img/coingecko-logo.webp';
 
 const Table = () => {
 
-    const { cryptoData, currency } = useContext(CryptoContext);
+    const { currency } = useSelector(state => state.filters);
+    const { cryptoData, status } = useSelector(state => state.coins);
 
     return (
         <>
             <div className='flex flex-col mt-9 border border-gray-100 rounded'>
                 {
-                    cryptoData ? (
+                    cryptoData && status !== 'loading' ? (
                         <table className='w-full table-auto'>
                             <thead className='capitalize text-base text-gray-100 font-medium border-b border-gray-100'>
                                 <tr>

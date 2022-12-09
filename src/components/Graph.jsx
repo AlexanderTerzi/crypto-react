@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
 
-import { CryptoContext } from '../pages/Home';
+import { useSelector } from 'react-redux';
 
 const typeData = [
     {
@@ -58,7 +58,8 @@ const GraphComponent = ({ data, currency, type }) => {
 };
 
 const Graph = ({ coinId }) => {
-    let { currency } = useContext(CryptoContext);
+    const { currency } = useSelector(state => state.filters);
+
     const [graphData, setGraphData] = useState();
     const [type, setType] = useState('prices');
     const [days, setDays] = useState(7);

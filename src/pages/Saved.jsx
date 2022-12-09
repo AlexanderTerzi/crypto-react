@@ -1,44 +1,36 @@
-import React, { useState, useEffect, useContext, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import axios from 'axios';
-
-import { CryptoContext } from './Home';
 
 import SaveBtn from '../components/UI/SaveBtn';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSavedCoins, setSavedCoinsArr } from '../redux/slices/savedCoinsSlice';
 
 const Saved = () => {
-    const [savedData, setSavedData] = useState();
-    const { savedCoins, currency, sortBy } = useContext(CryptoContext);
+    const { savedCoins, savedCoinsArr } = useSelector(state => state.savedCoins);
+    const dispatch = useDispatch();
+
+    const { currency, sortBy } = useSelector(state => state.filters)
 
     const getSavedData = async (totalCoins) => {
         totalCoins = savedCoins;
         if (totalCoins.length > 0) {
-            try {
-                const { data } = await axios.get
-                    (`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${totalCoins.join(
-                        ","
-                    )}&order=${sortBy}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`);
-                setSavedData(data);
-            } catch (error) {
-                console.log(error);
-                alert('Server error')
-            }
+            dispatch(fetchSavedCoins({ totalCoins, currency, sortBy }))
         }
-    }
+    };
 
     useEffect(() => {
         if (savedCoins && savedCoins.length > 0) {
             getSavedData(savedCoins);
         } else {
-            setSavedData();
+            dispatch(setSavedCoinsArr([]));
         }
     }, [savedCoins]);
 
     return (
         <section className='w-[80%] h-full flex-col mt-16 mb-24 relative md:mt-8'>
-            <div className='w-full min-h-[60vh] py-8 border border-gray-100 rounded'>
+            <div className='w-full min-h-[60vh] pb-8 border border-gray-100 rounded'>
                 {
-                    savedData ? (
+                    savedCoins.length > 0 ? (
                         <table className='w-full table-auto'>
                             <thead className='capitalize text-base text-gray-100 font-medium border-b border-gray-100'>
                                 <tr>
@@ -54,7 +46,7 @@ const Saved = () => {
                             </thead>
                             <tbody>
                                 {
-                                    savedData.map((data) => {
+                                    savedCoinsArr.map((data) => {
                                         return (
                                             <tr
                                                 key={data.id}
@@ -106,10 +98,9 @@ const Saved = () => {
                                 }
                             </tbody>
                         </table>
-                    )
-                        : <h1 className='min-h-[60vh] text-lg text-cyan flex items-center justify-center'>
-                            There is no saved coins
-                        </h1>
+                    ) : <h1 className='min-h-[60vh] text-lg text-cyan flex items-center justify-center'>
+                        There is no saved coins
+                    </h1>
                 }
             </div>
             <Outlet />

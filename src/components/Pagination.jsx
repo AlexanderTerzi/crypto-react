@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
-import { CryptoContext } from '../pages/Home';
+import { useDispatch, useSelector } from 'react-redux';
+import { setItemsPerPage, setPage } from '../redux/slices/filtersSlice';
 
 import arrowIcon from '../assets/img/pagination-arrow.svg';
 import submitIcon from '../assets/img/submit-icon.svg';
 
 const ItemsPerPage = () => {
-    const inputRef = useRef(null);
+    const dispatch = useDispatch();
 
-    const { setItemsPerPage } = useContext(CryptoContext);
+    const inputRef = useRef(null);
 
     const handlePerPageSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +17,7 @@ const ItemsPerPage = () => {
         let val = inputRef.current.value;
 
         if (val != 0) {
-            setItemsPerPage(val);
+            dispatch(setItemsPerPage(val));
             inputRef.current.value = val;
         }
     };
@@ -51,7 +52,10 @@ const ItemsPerPage = () => {
 }
 
 const Pagination = () => {
-    const { page, setPage, totalPages, itemsPerPage, cryptoData } = useContext(CryptoContext);
+    const dispatch = useDispatch();
+
+    const { itemsPerPage, totalPages, page } = useSelector(state => state.filters);
+    const { cryptoData } = useSelector(state => state.coins);
 
     const totalNumber = Math.ceil(Number(totalPages) / itemsPerPage) || 10;
 
@@ -59,7 +63,7 @@ const Pagination = () => {
         if (page === totalNumber) {
             return null;
         } else {
-            setPage(page + 1);
+            dispatch(setPage(page + 1));
         };
     };
 
@@ -67,23 +71,23 @@ const Pagination = () => {
         if (page === 1) {
             return null;
         } else {
-            setPage(page - 1);
+            dispatch(setPage(page - 1));
         };
     };
 
     const multiNextPage = () => {
         if (page + 3 >= totalNumber) {
-            setPage(totalNumber - 1)
+            dispatch(setPage(totalNumber - 1))
         } else {
-            setPage(page + 3)
+            dispatch(setPage(page + 3));
         };
     };
 
     const multiPrevPage = () => {
         if (page - 3 <= totalNumber) {
-            setPage(page - 3)
+            dispatch(setPage(page - 3))
         } else {
-            setPage(page - 2)
+            dispatch(setPage(page - 2))
         };
     };
 
@@ -140,7 +144,7 @@ const Pagination = () => {
                     </li>}
                     {page !== totalNumber && <li>
                         <button
-                            onClick={() => setPage(totalNumber)}
+                            onClick={() => dispatch(setPage(totalNumber))}
                             className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] bg-gray-200 mx-1.5'>
                             {totalNumber}
                         </button>

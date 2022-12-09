@@ -1,6 +1,7 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { CryptoContext } from '../pages/Home';
+import { setCurrency } from '../redux/slices/filtersSlice';
 
 const currencyTypes = [
     { value: 'usd', name: 'usd' },
@@ -15,14 +16,14 @@ const currencyTypes = [
 ];
 
 const Currency = () => {
+    const dispatch = useDispatch();
 
-    const { setCurrency } = useContext(CryptoContext);
     const currencyRef = useRef(null);
 
     const handleCurrencySubmit = (e) => {
         e.preventDefault();
 
-        setCurrency(currencyRef.current.value);
+        dispatch(setCurrency(currencyRef.current.value));
     }
 
     return (

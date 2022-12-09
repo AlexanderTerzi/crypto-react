@@ -1,6 +1,7 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { CryptoContext } from '../pages/Home';
+import { setSortBy, setPage, setCoinSearch } from '../redux/slices/filtersSlice';
 
 const sortTypes = [
     { value: 'market_cap_desc', name: 'market cap desc' },
@@ -14,14 +15,19 @@ const sortTypes = [
 ];
 
 const Sort = () => {
-    const { setSortBy, resetPage } = useContext(CryptoContext);
+    const dispatch = useDispatch();
     const sortRef = useRef();
 
     const handleSortChange = (e) => {
         e.preventDefault();
 
-        setSortBy(sortRef.current.value);
-    }
+        dispatch(setSortBy(sortRef.current.value));
+    };
+
+    const resetPage = () => {
+        dispatch(setPage(1));
+        dispatch(setCoinSearch(''));
+    };
 
     return (
         <div className='flex'>
