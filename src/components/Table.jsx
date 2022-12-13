@@ -12,6 +12,7 @@ const Table = () => {
 
     const { currency } = useSelector(state => state.filters);
     const { cryptoData, status } = useSelector(state => state.coins);
+    const { darkTheme } = useSelector(state => state.theme);
 
     return (
         <>
@@ -37,7 +38,7 @@ const Table = () => {
                                         return (
                                             <tr
                                                 key={data.id}
-                                                className='text-center text-base border-b border-gray-100 hover:bg-gray-200 ease-in duration-200 last:border-0 ssm:text-sm'>
+                                                className={`${darkTheme ? 'hover:bg-gray-200' : 'hover:bg-dirty_white-200'} text-center text-base border-b border-gray-100 ease-in duration-200 last:border-0 ssm:text-sm`}>
                                                 <td className='py-4 flex items-center uppercase'>
                                                     <SaveBtn data={data} />
                                                     <Link to={`/${data.id}`} className='flex items-center'>
@@ -96,7 +97,7 @@ const Table = () => {
                         href="https://www.coingecko.com/"
                         target='_blank'
                         rel='noreferrer'
-                        className='text-cyan flex'
+                        className={`${darkTheme ? 'text-cyan' : 'text-gray-100'} flex`}
                     >
                         CoinGecko
                         <img

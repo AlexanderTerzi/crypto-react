@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setCurrency } from '../redux/slices/filtersSlice';
 
@@ -17,6 +17,8 @@ const currencyTypes = [
 
 const Currency = () => {
     const dispatch = useDispatch();
+
+    const { darkTheme } = useSelector(state => state.theme);
 
     const currencyRef = useRef(null);
 
@@ -38,7 +40,7 @@ const Currency = () => {
                 <select
                     name="currency"
                     id="currency"
-                    className='rounded bg-gray-200 text-base pl-2 pr-10 py-1 leading-4 focus:outline-0 uppercase'
+                    className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} rounded text-base pl-2 pr-10 py-1 leading-4 focus:outline-0 uppercase`}
                     onChange={handleCurrencySubmit}
                     ref={currencyRef}>
                     {

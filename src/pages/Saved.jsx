@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSavedCoins, setSavedCoinsArr } from '../redux/slices/savedCoinsSlice';
 
 const Saved = () => {
-    const { savedCoins, savedCoinsArr } = useSelector(state => state.savedCoins);
     const dispatch = useDispatch();
 
+    const { savedCoins, savedCoinsArr } = useSelector(state => state.savedCoins);
+    const { darkTheme } = useSelector(state => state.theme);
     const { currency, sortBy } = useSelector(state => state.filters)
 
     const getSavedData = async (totalCoins) => {
@@ -50,7 +51,7 @@ const Saved = () => {
                                         return (
                                             <tr
                                                 key={data.id}
-                                                className='text-center text-base border-b border-gray-100 hover:bg-gray-200 ease-in duration-200'>
+                                                className={`${darkTheme ? 'hover:bg-gray-200' : 'hover:bg-dirty_white-200'} text-center text-base border-b border-gray-100 ease-in duration-200`}>
                                                 <td className='py-4 flex items-center uppercase'>
                                                     <SaveBtn data={data} />
                                                     <Link to={`${data.id}`} className='flex items-center'>
@@ -98,7 +99,7 @@ const Saved = () => {
                                 }
                             </tbody>
                         </table>
-                    ) : <h1 className='min-h-[60vh] text-lg text-cyan flex items-center justify-center'>
+                    ) : <h1 className={`${darkTheme ? 'text-cyan' : 'text-gray-200'} min-h-[60vh] text-lg  flex items-center justify-center`}>
                         There is no saved coins
                     </h1>
                 }

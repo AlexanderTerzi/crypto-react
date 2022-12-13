@@ -1,23 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import Spinner from './UI/Spinner';
 
 const TrendingItem = ({ data }) => {
     const navigate = useNavigate();
+
+    const { darkTheme } = useSelector(state => state.theme);
 
     const getCoinDetails = (id) => {
         navigate(`${id}`);
     };
 
     return (
-        <div className='w-[40%] lg:w-[90%] bg-gray-200 mb-12 last:mb-0 rounded-lg p-4 relative cursor-pointer hover:bg-gray-100 hover:bg-opacity-40 ease-in duration-200'
+        <div className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} w-[40%] lg:w-[90%] mb-12 last:mb-0 rounded-lg p-4 relative cursor-pointer hover:bg-gray-100 hover:bg-opacity-40 ease-in duration-200`}
             onClick={() => getCoinDetails(data.id)}>
             {data ? <>
                 <h3 className='text-base flex items-center my-0.5'>
                     <span className='text-gray-100 capitalize'>
                         name:&nbsp;
                     </span>
-                    <span className='text-cyan'>
+                    <span className={`${darkTheme ? 'text-cyan' : 'text-gray-300'}`}>
                         {data.name}
                     </span>
                     <img
@@ -29,7 +33,7 @@ const TrendingItem = ({ data }) => {
                     <span className='text-gray-100 capitalize'>
                         Market cap rank:&nbsp;
                     </span>
-                    <span className='text-cyan'>
+                    <span className={`${darkTheme ? 'text-cyan' : 'text-gray-300'}`}>
                         {data.market_cap_rank}
                     </span>
                 </h3>
@@ -37,7 +41,7 @@ const TrendingItem = ({ data }) => {
                     <span className='text-gray-100 capitalize'>
                         price (in BTC):&nbsp;
                     </span>
-                    <span className='text-cyan'>
+                    <span className={`${darkTheme ? 'text-cyan' : 'text-gray-300'}`}>
                         {
                             new Intl.NumberFormat("en-In", {
                                 style: 'currency',
@@ -51,7 +55,7 @@ const TrendingItem = ({ data }) => {
                     <span className='text-gray-100 capitalize'>
                         Score:&nbsp;
                     </span>
-                    <span className='text-cyan'>
+                    <span className={`${darkTheme ? 'text-cyan' : 'text-gray-300'}`}>
                         {data.score}
                     </span>
                 </h3>

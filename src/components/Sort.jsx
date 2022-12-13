@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setSortBy, setPage, setCoinSearch } from '../redux/slices/filtersSlice';
 
@@ -17,6 +17,7 @@ const sortTypes = [
 const Sort = () => {
     const dispatch = useDispatch();
     const sortRef = useRef();
+    const { darkTheme } = useSelector(state => state.theme);
 
     const handleSortChange = (e) => {
         e.preventDefault();
@@ -38,7 +39,7 @@ const Sort = () => {
                 <select
                     name="sortby"
                     id="sortby"
-                    className='rounded bg-gray-200 text-base pl-2 pr-10 py-1 leading-4 capitalize outline-0 focus:outline-0 xl:pr-4'
+                    className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} rounded text-base pl-2 pr-10 py-1 leading-4 capitalize outline-0 focus:outline-0 xl:pr-4`}
                     ref={sortRef}
                     onChange={handleSortChange}
                 >
@@ -62,7 +63,7 @@ const Sort = () => {
                     width="1em"
                     height="1em"
                     viewBox="0 0 24 24"
-                    className='w-full h-full fill-white hover:fill-cyan ease-in duration-200'
+                    className={`${darkTheme ? 'fill-white hover:fill-cyan' : 'fill-gray-300 hover:fill-gray-200'} w-full h-full ease-in duration-200`}
                     style={{
                         msTransform: "rotate(360deg)",
                         WebkitTransform: "rotate(360deg)",

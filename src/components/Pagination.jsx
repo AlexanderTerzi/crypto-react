@@ -8,6 +8,7 @@ import submitIcon from '../assets/img/submit-icon.svg';
 
 const ItemsPerPage = () => {
     const dispatch = useDispatch();
+    const { darkTheme } = useSelector(state => state.theme);
 
     const inputRef = useRef(null);
 
@@ -39,13 +40,28 @@ const ItemsPerPage = () => {
                 placeholder='10'
                 min='1'
                 max='200'
-                className='w-16 rounded bg-gray-200 placeholder:text-gray-100 pl-2 required outline-0 border border-transparent focus:border-cyan ease-in duration-200 leading-4'
+                className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-100'} w-16 rounded  placeholder:text-gray-100 pl-2 required outline-0 border border-transparent focus:border-cyan ease-in duration-200 leading-4`}
             />
             <button type='submit' className='ml-1 cursor-pointer'>
-                <img
-                    className='w-full h-auto'
-                    src={submitIcon}
-                    alt="Submit" />
+                <svg
+                    width={24}
+                    height={24}
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M10.857 15.429 14.286 12l-3.429-3.429M14.286 12H4"
+                        stroke={`${darkTheme ? 'cyan' : '#222'}`}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                    <path
+                        d="M5.143 9.714V6.277A2.286 2.286 0 0 1 7.419 3.99l9.088-.037a2.286 2.286 0 0 1 2.295 2.278l.046 11.462a2.285 2.285 0 0 1-2.277 2.295H7.43a2.286 2.286 0 0 1-2.286-2.286v-3.417"
+                        stroke={`${darkTheme ? 'cyan' : '#222'}`}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                </svg>
             </button>
         </form>
     )
@@ -56,6 +72,7 @@ const Pagination = () => {
 
     const { itemsPerPage, totalPages, page } = useSelector(state => state.filters);
     const { cryptoData } = useSelector(state => state.coins);
+    const { darkTheme } = useSelector(state => state.theme);
 
     const totalNumber = Math.ceil(Number(totalPages) / itemsPerPage) || 10;
 
@@ -100,11 +117,22 @@ const Pagination = () => {
                         <button
                             onClick={prevPage}
                             className='outline-0 hover:text-cyan w-8'>
-                            <img
-                                src={arrowIcon}
-                                alt="left"
-                                className='h-6 rotate-180'
-                            />
+                            <svg
+                                width={32}
+                                height={32}
+                                className='h-[32px] w-[32px] rotate-180 mt-0.5'
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.016 1.003c-8.285 0-15 6.715-15 15 0 8.284 6.715 15 15 15 8.284 0 15-6.716 15-15 0-8.285-6.716-15-15-15Zm9.192 24.192A12.953 12.953 0 1 1 6.917 6.848a12.953 12.953 0 0 1 18.291 18.347Z"
+                                    fill={`${darkTheme ? 'cyan' : '#818181'}`}
+                                />
+                                <path
+                                    d="m14.977 10.312 4.691 4.69H8.008v2h11.66l-4.69 4.691 1.414 1.415 7.105-7.105-7.105-7.106-1.415 1.415Z"
+                                    fill={`${darkTheme ? 'cyan' : '#818181'}`}
+                                />
+                            </svg>
                         </button>
                     </li>
                     {page + 1 === totalNumber || page === totalNumber && <li>
@@ -117,7 +145,7 @@ const Pagination = () => {
                     {page - 1 !== 0 && <li>
                         {page > 1 && <button
                             onClick={prevPage}
-                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] bg-gray-200 mx-1.5'>
+                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] mx-1.5`}>
                             {page - 1}
                         </button>}
                     </li>}
@@ -131,7 +159,7 @@ const Pagination = () => {
                     {page + 1 !== totalNumber && page !== totalNumber && <li>
                         <button
                             onClick={nextPage}
-                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] bg-gray-200 mx-1.5'>
+                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] mx-1.5`}>
                             {page + 1}
                         </button>
                     </li>}
@@ -145,7 +173,7 @@ const Pagination = () => {
                     {page !== totalNumber && <li>
                         <button
                             onClick={() => dispatch(setPage(totalNumber))}
-                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] bg-gray-200 mx-1.5'>
+                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] mx-1.5`}>
                             {totalNumber}
                         </button>
                     </li>}
@@ -153,11 +181,22 @@ const Pagination = () => {
                         <button
                             onClick={nextPage}
                             className='outline-0 hover:text-cyan w-8'>
-                            <img
-                                src={arrowIcon}
-                                alt="right"
-                                className='h-6'
-                            />
+                            <svg
+                                width={32}
+                                height={32}
+                                className='h-[32px] w-[32px] mt-0.5'
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.016 1.003c-8.285 0-15 6.715-15 15 0 8.284 6.715 15 15 15 8.284 0 15-6.716 15-15 0-8.285-6.716-15-15-15Zm9.192 24.192A12.953 12.953 0 1 1 6.917 6.848a12.953 12.953 0 0 1 18.291 18.347Z"
+                                    fill={`${darkTheme ? 'cyan' : '#818181'}`}
+                                />
+                                <path
+                                    d="m14.977 10.312 4.691 4.69H8.008v2h11.66l-4.69 4.691 1.414 1.415 7.105-7.105-7.105-7.106-1.415 1.415Z"
+                                    fill={`${darkTheme ? 'cyan' : '#818181'}`}
+                                />
+                            </svg>
                         </button>
                     </li>
                 </ul>

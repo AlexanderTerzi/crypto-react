@@ -4,6 +4,7 @@ import coinDetailsSlice from './slices/coinDetailsSlice';
 import coinsSlice from './slices/coinsSlice';
 import filtersSlice from './slices/filtersSlice';
 import savedCoinsSlice from './slices/savedCoinsSlice';
+import themeSlice from './slices/themeSlice';
 import trendDataSlice from './slices/trendDataSlice';
 
 export const store = configureStore({
@@ -13,5 +14,6 @@ export const store = configureStore({
         filters: filtersSlice,
         coinDetail: coinDetailsSlice,
         trendData: trendDataSlice,
+        theme: themeSlice,
     },
 })
