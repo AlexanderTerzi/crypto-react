@@ -8,7 +8,7 @@ import { setTotalPages } from '../redux/slices/filtersSlice';
 
 import Logo from '../components/Logo';
 import Navigation from '../components/Navigation';
-import { setDarkTheme } from '../redux/slices/themeSlice';
+import { setTheme } from '../redux/slices/themeSlice';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Home = () => {
     const { darkTheme } = useSelector(state => state.theme);
 
     const handleSwitchTheme = () => {
-        dispatch(setDarkTheme(!darkTheme));
+        dispatch(setTheme(!darkTheme));
     };
 
     useEffect(() => {

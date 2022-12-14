@@ -1,18 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { checkTheme } from "../../utils/checkTheme";
+import { getThemeFromLS } from "../../utils/getThemeFromLS";
 
 const initialState = {
-    darkTheme: true,
+    darkTheme: getThemeFromLS(),
 };
 
 const themeSlice = createSlice({
     name: 'theme',
     initialState,
     reducers: {
-        setDarkTheme(state, action) {
-            state.darkTheme = action.payload;
+        setTheme(state, action) {
+            const newTheme = checkTheme(action.payload);
+            state.darkTheme = newTheme;
         },
     }
 });
 
-export const { setDarkTheme } = themeSlice.actions;
+export const { setTheme } = themeSlice.actions;
 export default themeSlice.reducer;

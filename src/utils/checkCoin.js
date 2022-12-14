@@ -9,6 +9,5 @@ export const checkCoin = (coinId) => {
         const newSavedCoins = [...currentSavedCoins, coinId];
         localStorage.setItem("savedCoins", JSON.stringify(newSavedCoins));
         return newSavedCoins;
-
     }
 };
