@@ -4,21 +4,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
 
 import { useSelector } from 'react-redux';
-
-const typeData = [
-    {
-        type: 'prices',
-        name: 'Prices'
-    },
-    {
-        type: 'market_caps',
-        name: 'Market caps'
-    },
-    {
-        type: 'total_volumes',
-        name: 'Total volumes'
-    },
-];
+import { selectTranslations } from '../redux/slices/languageSlice';
 
 const daysData = [
     { day: 7, name: '7d' },
@@ -58,11 +44,14 @@ const GraphComponent = ({ data, currency, type }) => {
 };
 
 const Graph = ({ coinId }) => {
+    const t = useSelector(selectTranslations)
     const { currency } = useSelector(state => state.filters);
 
     const [graphData, setGraphData] = useState();
     const [type, setType] = useState('prices');
     const [days, setDays] = useState(7);
+
+    const typeData = t.graphTypeData;
 
     useEffect(() => {
         const getGraphData = async (coinId) => {

@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
-import SaveBtn from '../components/UI/SaveBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSavedCoins, setSavedCoinsArr } from '../redux/slices/savedCoinsSlice';
+import { selectTranslations } from '../redux/slices/languageSlice';
+
+import SaveBtn from '../components/UI/SaveBtn';
+import ErrorBlock from '../components/ErrorBlock';
 
 const Saved = () => {
     const dispatch = useDispatch();
+    const t = useSelector(selectTranslations);
 
-    const { savedCoins, savedCoinsArr } = useSelector(state => state.savedCoins);
+    const { savedCoins, savedCoinsArr, status } = useSelector(state => state.savedCoins);
     const { darkTheme } = useSelector(state => state.theme);
     const { currency, sortBy } = useSelector(state => state.filters)
 
@@ -35,11 +39,11 @@ const Saved = () => {
                         <table className='w-full table-auto'>
                             <thead className='capitalize text-base text-gray-100 font-medium border-b border-gray-100'>
                                 <tr>
-                                    <th className='py-1'>assets</th>
-                                    <th className='py-1'>name</th>
-                                    <th className='py-1'>price</th>
-                                    <th className='py-1 ssm:hidden'>total volume</th>
-                                    <th className='py-1 md:hidden'>market cap change, %</th>
+                                    <th className='py-1'>{t.assetsCoins}</th>
+                                    <th className='py-1'>{t.nameCoins}</th>
+                                    <th className='py-1'>{t.priceCoins}</th>
+                                    <th className='py-1 ssm:hidden'>{t.totalVolumeCoins}</th>
+                                    <th className='py-1 md:hidden'>{t.marketCapChangeCoins}, %</th>
                                     <th className='py-1 table-cell lg:hidden'>1H, %</th>
                                     <th className='py-1 table-cell lg:hidden'>24H, %</th>
                                     <th className='py-1 table-cell lg:hidden'>7D, %</th>
@@ -99,9 +103,19 @@ const Saved = () => {
                                 }
                             </tbody>
                         </table>
-                    ) : <h1 className={`${darkTheme ? 'text-cyan' : 'text-gray-200'} min-h-[60vh] text-lg  flex items-center justify-center`}>
-                        There is no saved coins
-                    </h1>
+                    ) : <div className={`${darkTheme ? 'text-cyan' : 'text-gray-200'} min-h-[60vh] text-[20px] flex flex-col items-center justify-center p-2 text-center`}>
+                        <h1 className={`${darkTheme ? 'text-cyan' : 'text-gray-200'} text-lg flex items-center justify-center ssm:text-[20px]`}>
+                            {t.noSavedCoins}
+                        </h1>
+                        <Link
+                            to='/'
+                            className='bg-cyan w-[200px] text-gray-300 py-1 mt-6 flex items-center justify-center text-[16px] hover:bg-gray-100 ease-in duration-200'>
+                            {t.toCoins}
+                        </Link>
+                    </div>
+                }
+                {
+                    status === 'error' && <ErrorBlock />
                 }
             </div>
             <Outlet />

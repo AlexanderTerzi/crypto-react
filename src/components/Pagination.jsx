@@ -2,12 +2,13 @@ import React, { useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setItemsPerPage, setPage } from '../redux/slices/filtersSlice';
+import { selectTranslations } from '../redux/slices/languageSlice';
 
-import arrowIcon from '../assets/img/pagination-arrow.svg';
-import submitIcon from '../assets/img/submit-icon.svg';
 
 const ItemsPerPage = () => {
     const dispatch = useDispatch();
+    const t = useSelector(selectTranslations);
+
     const { darkTheme } = useSelector(state => state.theme);
 
     const inputRef = useRef(null);
@@ -28,9 +29,9 @@ const ItemsPerPage = () => {
             className='relative flex items-center font-RobotoCondensed mr-12 sm:mr-0'
             onSubmit={handlePerPageSubmit}>
             <label
-                className='relative flex justify-center items-center mr-2 font-bold'
+                className='relative flex justify-center items-center mr-2 font-bold ssm:text-[14px]'
                 htmlFor="perPage">
-                Per Page
+                {t.perPage}
             </label>
             <input
                 ref={inputRef}
@@ -138,42 +139,42 @@ const Pagination = () => {
                     {page + 1 === totalNumber || page === totalNumber && <li>
                         <button
                             onClick={multiPrevPage}
-                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px]'>
+                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[16px] ssm:text-[15px]'>
                             ...
                         </button>
                     </li>}
                     {page - 1 !== 0 && <li>
                         {page > 1 && <button
                             onClick={prevPage}
-                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] mx-1.5`}>
+                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[16px] mx-1.5 ssm:text-[15px]`}>
                             {page - 1}
                         </button>}
                     </li>}
                     <li>
                         <button
                             disabled
-                            className='outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] bg-cyan text-gray-300 mx-1.5'>
+                            className='outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[16px] bg-cyan text-gray-300 mx-1.5 ssm:text-[15px]'>
                             {page}
                         </button>
                     </li>
                     {page + 1 !== totalNumber && page !== totalNumber && <li>
                         <button
                             onClick={nextPage}
-                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] mx-1.5`}>
+                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[16px] mx-1.5 ssm:text-[15px]`}>
                             {page + 1}
                         </button>
                     </li>}
                     {page + 1 !== totalNumber && page !== totalNumber && <li>
                         <button
                             onClick={multiNextPage}
-                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px]'>
+                            className='outline-0 hover:text-cyan rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[16px] ssm:text-[15px]'>
                             ...
                         </button>
                     </li>}
                     {page !== totalNumber && <li>
                         <button
                             onClick={() => dispatch(setPage(totalNumber))}
-                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[18px] mx-1.5`}>
+                            className={`${darkTheme ? 'bg-gray-200 hover:text-cyan' : 'bg-dirty_white-200 hover:text-gray-300'} outline-0 rounded-full w-8 h-8 flex items-center justify-center ease-in duration-200 text-[16px] mx-1.5 ssm:text-[15px]`}>
                             {totalNumber}
                         </button>
                     </li>}

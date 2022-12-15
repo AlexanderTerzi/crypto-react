@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import logoImg from '../assets/img/logo.svg'
+import logoImg from '../assets/img/logo.svg';
 
 const Logo = () => {
     const { darkTheme } = useSelector(state => state.theme);

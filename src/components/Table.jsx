@@ -2,13 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
+import coinGeckoLogo from '../assets/img/coingecko-logo.webp';
+import { selectTranslations } from '../redux/slices/languageSlice';
 
 import Pagination from './Pagination';
 import SaveBtn from './UI/SaveBtn';
 import Spinner from './UI/Spinner';
-import coinGeckoLogo from '../assets/img/coingecko-logo.webp';
+import ErrorBlock from './ErrorBlock';
 
 const Table = () => {
+    const t = useSelector(selectTranslations);
 
     const { currency } = useSelector(state => state.filters);
     const { cryptoData, status } = useSelector(state => state.coins);
@@ -22,11 +25,11 @@ const Table = () => {
                         <table className='w-full table-auto'>
                             <thead className='capitalize text-base text-gray-100 font-medium border-b border-gray-100'>
                                 <tr>
-                                    <th className='py-1'>assets</th>
-                                    <th className='py-1'>name</th>
-                                    <th className='py-1'>price</th>
-                                    <th className='py-1 ssm:hidden'>total volume</th>
-                                    <th className='py-1 md:hidden'>market cap change, %</th>
+                                    <th className='py-1'>{t.assetsCoins}</th>
+                                    <th className='py-1'>{t.nameCoins}</th>
+                                    <th className='py-1'>{t.priceCoins}</th>
+                                    <th className='py-1 ssm:hidden'>{t.totalVolumeCoins}</th>
+                                    <th className='py-1 md:hidden'>{t.marketCapChangeCoins}, %</th>
                                     <th className='py-1 table-cell lg:hidden'>1H, %</th>
                                     <th className='py-1 table-cell lg:hidden'>24H, %</th>
                                     <th className='py-1 table-cell lg:hidden'>7D, %</th>
@@ -89,10 +92,13 @@ const Table = () => {
                     )
                         : <Spinner classes={'w-full min-h-[60vh] h-full flex justify-center flex-col items-center'} />
                 }
+                {
+                    status === 'error' && <ErrorBlock />
+                }
             </div>
-            <div className='flex items-center justify-between mt-4 capitalize h-[2rem] lg:flex-col'>
+            <div className='flex items-center justify-between mt-4 h-[2rem] lg:flex-col ssm:text-[14px]'>
                 <span className='flex items-center'>
-                    Data provided by&nbsp;
+                    {t.dataProvided}&nbsp;
                     <a
                         href="https://www.coingecko.com/"
                         target='_blank'
@@ -103,7 +109,7 @@ const Table = () => {
                         <img
                             src={coinGeckoLogo}
                             alt="CoinGecko"
-                            className='h-6 ml-1'
+                            className='h-6 ml-1 ssm:h-5'
                         />
                     </a>
                 </span>

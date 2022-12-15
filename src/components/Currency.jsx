@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCurrency } from '../redux/slices/filtersSlice';
+import { selectTranslations } from '../redux/slices/languageSlice';
 
 const currencyTypes = [
     { value: 'usd', name: 'usd' },
@@ -17,6 +18,7 @@ const currencyTypes = [
 
 const Currency = () => {
     const dispatch = useDispatch();
+    const t = useSelector(selectTranslations);
 
     const { darkTheme } = useSelector(state => state.theme);
 
@@ -29,18 +31,18 @@ const Currency = () => {
     }
 
     return (
-        <div className='flex mr-7 md:mr-0'>
+        <div className='flex mr-7 md:mr-2'>
             <form
-                className='relative flex items-center font-RobotoCondensed mr-12 xl:mr-0 xl:ml-2'>
+                className='relative flex items-center font-RobotoCondensed mr-12 xl:mr-0 xl:ml-2 ssm:text-[14px]'>
                 <label
                     className='relative flex justify-center items-center mr-2 font-bold md:mr-0'
                     htmlFor="currency">
-                    currency
+                    {t.currency}
                 </label>
                 <select
                     name="currency"
                     id="currency"
-                    className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} rounded text-base pl-2 pr-10 py-1 leading-4 focus:outline-0 uppercase`}
+                    className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} rounded text-base pl-2 pr-10 py-1 leading-4 focus:outline-0 uppercase ssm:text-[13px]`}
                     onChange={handleCurrencySubmit}
                     ref={currencyRef}>
                     {

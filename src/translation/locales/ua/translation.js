@@ -1,0 +1,58 @@
+export const uaTranslation = {
+    "crypto": "Криптовалюта",
+    "trending": "В тренді",
+    "saved": "Збережені",
+    "theme": "тема",
+    "darkTheme": "Темна ",
+    "lightTheme": "Світла ",
+    "chooseTheme": "Обери тему",
+    "chooseLang": "Обери мову",
+    "searchPlaceholder": "Пошук...",
+    "searchNoResult": "Немає результатів",
+    "currency": "валюта",
+    "sortBy": "Сортування",
+    "sortTypes": [
+        { value: 'market_cap_desc', name: 'Ринкова капіт. зменш' },
+        { value: 'market_cap_asc', name: 'Ринкова капіт. зрос' },
+        { value: 'volume_desc', name: 'Обсяг зменш' },
+        { value: 'volume_asc', name: 'Обсяг зрос' },
+        { value: 'id_desc', name: "Ім'я зменш." },
+        { value: 'id_asc', name: "Ім'я зрос." },
+        { value: 'gecko_desc', name: 'Gecko rank зменш.' },
+        { value: 'gecko_asc', name: 'Gecko rank зрос.' },
+    ],
+    "assetsCoins": "активи",
+    "nameCoins": "Ім'я",
+    "priceCoins": "ціна",
+    "scoreCoins": "Рахунок",
+    "totalVolumeCoins": "загальний обсяг",
+    "marketCapChangeCoins": "зміна ринкової капіталізації",
+    "marketCapRankCoins": "Рейтинг ринк. капіталізації",
+    "coinGeckoRank": "Рейтинг CoinGecko",
+    "coinGeckoScore": "Рахунок CoinGecko",
+    "dataProvided": "Дані надані",
+    "perPage": "Відобразити",
+    "loading": "Завантаження...",
+    "marketCap": "Ринкова капіталізація",
+    "maxSupply": "Макс. запас",
+    "circulatingSupply": "Оборотний запас",
+    "sentiment": "Відношення",
+    "graphTypeData": [
+        {
+            type: 'prices',
+            name: 'Ціни'
+        },
+        {
+            type: 'market_caps',
+            name: 'Ринкова капітал.'
+        },
+        {
+            type: 'total_volumes',
+            name: 'Загальний обсяг'
+        },
+    ],
+    "noSavedCoins": "Немає збережених криптовалют",
+    "reload": "Перезавантажити",
+    "noCoinsError": "Виникла помилка завантаження, спробуйте перезавантажити сторінку.",
+    "toCoins": "До криптовалюти",
+}

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCoinData } from '../redux/slices/coinDetailsSlice';
+import { selectTranslations } from '../redux/slices/languageSlice';
 
 import Graph from './Graph';
 import Spinner from './UI/Spinner';
@@ -36,6 +37,8 @@ const PriceIndicator = ({ currentPrice, highPrice, lowPrice }) => {
 };
 
 const CryptoDetails = () => {
+    const t = useSelector(selectTranslations);
+
     const { coinId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -82,7 +85,7 @@ const CryptoDetails = () => {
                                 <div className='flex flex-col w-full'>
                                     <div className='flex justify-between '>
                                         <span className='text-sm capitalize text-gray-100'>
-                                            Price
+                                            {t.priceCoins}
                                         </span>
                                         <div
                                             className={`text-sm px-1 ml-2 font-medium flex items-center rounded uppercase bg-opacity-25
@@ -115,7 +118,7 @@ const CryptoDetails = () => {
                             <div className='flex w-full mt-4 justify-between ssm:flex-col'>
                                 <div className='flex flex-col'>
                                     <span className='text-sm capitalize text-gray-100'>
-                                        Market Cap
+                                        {t.marketCap}
                                     </span>
                                     <h2 className='text-base font-bold'>
                                         {
@@ -146,7 +149,7 @@ const CryptoDetails = () => {
                             </div>
                             <div className='flex flex-col w-full mt-4 justify-between'>
                                 <span className='text-sm capitalize text-gray-100'>
-                                    Total volume
+                                    {t.totalVolumeCoins}
                                 </span>
                                 <h2 className='text-base font-bold'>
                                     {
@@ -197,7 +200,7 @@ const CryptoDetails = () => {
                             <div className='flex w-full mt-4 justify-between ssm:hidden'>
                                 <div className='flex flex-col'>
                                     <span className='text-sm capitalize text-gray-100'>
-                                        Max supply
+                                        {t.maxSupply}
                                     </span>
                                     <h2 className='text-base font-bold'>
                                         {
@@ -211,7 +214,7 @@ const CryptoDetails = () => {
                                 </div>
                                 <div className='flex flex-col'>
                                     <span className='text-sm capitalize text-gray-100'>
-                                        Circulating supply
+                                        {t.circulatingSupply}
                                     </span>
                                     <h2 className='text-base font-bold'>
                                         {
@@ -250,7 +253,7 @@ const CryptoDetails = () => {
                                 </div>
                                 <div className='flex flex-col content-start'>
                                     <span className='text-sm capitalize text-gray-100'>
-                                        Sentiment
+                                        {t.sentiment}
                                     </span>
                                     <div className='flex justify-between '>
                                         <div
@@ -294,19 +297,19 @@ const CryptoDetails = () => {
                             <div className='flex flex-col mt-4'>
                                 <h3 className='text-white py-1'>
                                     <span className='text-gray-100 capitalize mr-2'>
-                                        Market cap rank:
+                                        {t.marketCapRankCoins}:
                                     </span>
                                     {coinData.market_cap_rank}
                                 </h3>
                                 <h3 className='text-white py-1'>
                                     <span className='text-gray-100 capitalize mr-2'>
-                                        CoinGecko rank:
+                                        {t.coinGeckoRank}:
                                     </span>
                                     {coinData.coingecko_rank}
                                 </h3>
                                 <h3 className='text-white py-1'>
                                     <span className='text-gray-100 capitalize mr-2'>
-                                        CoinGecko score:
+                                        {t.coinGeckoScore}:
                                     </span>
                                     {coinData.coingecko_score}
                                 </h3>

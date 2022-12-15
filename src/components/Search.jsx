@@ -5,12 +5,13 @@ import { fetchSearchResult, setCoinSearch, setSearchData } from '../redux/slices
 
 import debounce from 'lodash.debounce';
 
-import searchIcon from '../assets/img/search-icon.svg';
 import Spinner from './UI/Spinner';
+import { selectTranslations } from '../redux/slices/languageSlice';
 
 const Search = () => {
     const dispatch = useDispatch();
 
+    const t = useSelector(selectTranslations);
     const { searchData } = useSelector(state => state.filters);
     const { darkTheme } = useSelector(state => state.theme);
 
@@ -74,8 +75,8 @@ const Search = () => {
                 onSubmit={handleSubmit}
             >
                 <input
-                    className={`${darkTheme ? 'bg-gray-200 focus:border-cyan' : 'bg-dirty_white-100'} w-full rounded placeholder:text-gray-100 pl-3 outline-0 border border-transparent  ease-in duration-200`}
-                    placeholder='Search...'
+                    className={`${darkTheme ? 'bg-gray-200 focus:border-cyan' : 'bg-dirty_white-100'} w-full rounded placeholder:text-gray-100 pl-3 outline-0 border border-transparent ease-in duration-200 ssm:text-[14px]`}
+                    placeholder={t.searchPlaceholder}
                     type='text'
                     name='search'
                     value={searchValue}
@@ -113,14 +114,14 @@ const Search = () => {
             </form>
             {
                 searchValue.length > 0 && (
-                    <ul className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} absolute top-11 right-0 w-96 h-96 rounded overflow-x-hidden py-2 bg-opacity-60 backdrop-blur-md scrollbar-thin scrollbar-thumb-gray-100`}>
+                    <ul className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} absolute top-11 right-0 w-96 h-96 rounded overflow-x-hidden py-2 bg-opacity-60 backdrop-blur-md scrollbar-thin scrollbar-thumb-gray-100 xl:w-72 lg:w-[85%] sm:w-[80%] ssm:w-[70%] lg:left-[30px] z-50`}>
                         {searchData
                             ? searchList
                             : <Spinner classes={'w-full h-full flex justify-center flex-col items-center'} />}
                         {
                             searchList.length === 0 && (
                                 <span className='w-full h-full flex justify-center flex-col items-center'>
-                                    No results
+                                    {t.searchNoResult}
                                 </span>
                             )
                         }

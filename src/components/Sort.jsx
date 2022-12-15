@@ -2,22 +2,15 @@ import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setSortBy, setPage, setCoinSearch } from '../redux/slices/filtersSlice';
-
-const sortTypes = [
-    { value: 'market_cap_desc', name: 'market cap desc' },
-    { value: 'market_cap_asc', name: 'market cap asc' },
-    { value: 'volume_desc', name: 'volume desc' },
-    { value: 'volume_asc', name: 'volume asc' },
-    { value: 'id_desc', name: 'name desc' },
-    { value: 'id_asc', name: 'name asc' },
-    { value: 'gecko_desc', name: 'gecko desc' },
-    { value: 'gecko_asc', name: 'gecko asc' },
-];
+import { selectTranslations } from '../redux/slices/languageSlice';
 
 const Sort = () => {
     const dispatch = useDispatch();
-    const sortRef = useRef();
+    const t = useSelector(selectTranslations);
+
     const { darkTheme } = useSelector(state => state.theme);
+
+    const sortRef = useRef();
 
     const handleSortChange = (e) => {
         e.preventDefault();
@@ -30,16 +23,18 @@ const Sort = () => {
         dispatch(setCoinSearch(''));
     };
 
+    const sortTypes = t.sortTypes;
+
     return (
         <div className='flex'>
-            <label className='flex justify-center items-center mr-14 md:mr-0 sm:mt-2'>
+            <label className='flex justify-center items-center mr-14 md:mr-0 sm:mt-2 ssm:text-[14px]'>
                 <span className='font-bold mr-2'>
-                    sort by:
+                    {t.sortBy}:
                 </span>
                 <select
                     name="sortby"
                     id="sortby"
-                    className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} rounded text-base pl-2 pr-10 py-1 leading-4 capitalize outline-0 focus:outline-0 xl:pr-4`}
+                    className={`${darkTheme ? 'bg-gray-200' : 'bg-dirty_white-200'} rounded text-base pl-2 pr-10 py-1 leading-4 outline-0 focus:outline-0 xl:pr-4 ssm:text-[13px]`}
                     ref={sortRef}
                     onChange={handleSortChange}
                 >
