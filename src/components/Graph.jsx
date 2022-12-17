@@ -5,6 +5,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, Responsi
 
 import { useSelector } from 'react-redux';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectFilters } from '../redux/slices/filtersSlice';
 
 const daysData = [
     { day: 7, name: '7d' },
@@ -45,7 +46,7 @@ const GraphComponent = ({ data, currency, type }) => {
 
 const Graph = ({ coinId }) => {
     const t = useSelector(selectTranslations)
-    const { currency } = useSelector(state => state.filters);
+    const { currency } = useSelector(selectFilters);
 
     const [graphData, setGraphData] = useState();
     const [type, setType] = useState('prices');

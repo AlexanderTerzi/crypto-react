@@ -1,19 +1,20 @@
 import React, { useCallback, useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSearchResult, setCoinSearch, setSearchData } from '../redux/slices/filtersSlice';
+import { fetchSearchResult, selectFilters, setCoinSearch, setSearchData } from '../redux/slices/filtersSlice';
+import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 import debounce from 'lodash.debounce';
 
 import Spinner from './UI/Spinner';
-import { selectTranslations } from '../redux/slices/languageSlice';
 
 const Search = () => {
     const dispatch = useDispatch();
 
     const t = useSelector(selectTranslations);
-    const { searchData } = useSelector(state => state.filters);
-    const { darkTheme } = useSelector(state => state.theme);
+    const { searchData } = useSelector(selectFilters);
+    const { darkTheme } = useSelector(selectTheme);
 
     const [searchValue, setSearchValue] = useState('');
     const inputRef = useRef(null);

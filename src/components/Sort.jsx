@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setSortBy, setPage, setCoinSearch } from '../redux/slices/filtersSlice';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 const Sort = () => {
     const dispatch = useDispatch();
-    const t = useSelector(selectTranslations);
 
-    const { darkTheme } = useSelector(state => state.theme);
+    const t = useSelector(selectTranslations);
+    const { darkTheme } = useSelector(selectTheme);
 
     const sortRef = useRef();
 

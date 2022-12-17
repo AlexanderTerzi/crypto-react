@@ -11,6 +11,7 @@ import Saved from './pages/Saved';
 
 import './index.css';
 import CryptoDetails from './components/CryptoDetails';
+import NotFound from './pages/NotFound';
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             element: <CryptoDetails />
           }
         ]
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

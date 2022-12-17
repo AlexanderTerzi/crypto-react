@@ -44,5 +44,7 @@ const trendDataSlice = createSlice({
     }
 });
 
+export const selectTrendData = ((state) => state.trendData);
+
 export const { setTrendData } = trendDataSlice.actions;
 export default trendDataSlice.reducer;

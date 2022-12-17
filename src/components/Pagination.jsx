@@ -1,15 +1,17 @@
 import React, { useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setItemsPerPage, setPage } from '../redux/slices/filtersSlice';
+import { selectCoins } from '../redux/slices/coinsSlice';
+import { selectFilters, setItemsPerPage, setPage } from '../redux/slices/filtersSlice';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 
 const ItemsPerPage = () => {
     const dispatch = useDispatch();
     const t = useSelector(selectTranslations);
 
-    const { darkTheme } = useSelector(state => state.theme);
+    const { darkTheme } = useSelector(selectTheme);
 
     const inputRef = useRef(null);
 
@@ -71,9 +73,9 @@ const ItemsPerPage = () => {
 const Pagination = () => {
     const dispatch = useDispatch();
 
-    const { itemsPerPage, totalPages, page } = useSelector(state => state.filters);
-    const { cryptoData } = useSelector(state => state.coins);
-    const { darkTheme } = useSelector(state => state.theme);
+    const { itemsPerPage, totalPages, page } = useSelector(selectFilters);
+    const { cryptoData } = useSelector(selectCoins);
+    const { darkTheme } = useSelector(selectTheme);
 
     const totalNumber = Math.ceil(Number(totalPages) / itemsPerPage) || 10;
 

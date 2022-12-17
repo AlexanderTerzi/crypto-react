@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSavedCoins } from '../../redux/slices/savedCoinsSlice';
+import { selectSavedCoins, setSavedCoins } from '../../redux/slices/savedCoinsSlice';
 
 const SaveBtn = ({ data }) => {
     const dispatch = useDispatch();
-    const { savedCoins } = useSelector(state => state.savedCoins);
+    const { savedCoins } = useSelector(selectSavedCoins);
 
     const handleCLickSave = (e) => {
         e.preventDefault();

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectTranslations } from '../../redux/slices/languageSlice';
+import { selectTheme } from '../../redux/slices/themeSlice';
 
 const Spinner = ({ classes }) => {
     const t = useSelector(selectTranslations);
-    const { darkTheme } = useSelector(state => state.theme)
+    const { darkTheme } = useSelector(selectTheme);
 
     return (
         <div className={classes}>

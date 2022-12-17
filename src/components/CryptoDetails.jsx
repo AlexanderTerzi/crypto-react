@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCoinData } from '../redux/slices/coinDetailsSlice';
+import { fetchCoinData, selectCoinDetails } from '../redux/slices/coinDetailsSlice';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectFilters } from '../redux/slices/filtersSlice';
 
 import Graph from './Graph';
 import Spinner from './UI/Spinner';
+import NotFound from '../pages/NotFound';
 
 const PriceIndicator = ({ currentPrice, highPrice, lowPrice }) => {
     const [greenIndicator, setGreenIndicator] = useState();
@@ -38,13 +40,12 @@ const PriceIndicator = ({ currentPrice, highPrice, lowPrice }) => {
 
 const CryptoDetails = () => {
     const t = useSelector(selectTranslations);
+    const { currency } = useSelector(selectFilters);
+    const { coinData, status } = useSelector(selectCoinDetails);
 
     const { coinId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const { currency } = useSelector(state => state.filters);
-    const { coinData } = useSelector(state => state.coinDetail);
 
     useEffect(() => {
         const getCoinData = async (coinId) => {
@@ -66,7 +67,7 @@ const CryptoDetails = () => {
             <div
                 onClick={(e) => e.stopPropagation()}
                 className='w-[65%] min-h-[65%] bg-gray-300 bg-opacity-75 rounded-lg text-white relative'>
-                {coinData ? (
+                {coinData.length !== 0 && status !== 'loading' && (
                     <div className='flex lg:flex-col items-center justify-between h-full w-full p-4 ssm:p-1'>
                         <div className='flex flex-col w-[45%] lg:w-[90%] h-full pr-2'>
                             <div className='flex w-full items-center'>
@@ -420,8 +421,13 @@ const CryptoDetails = () => {
                             </a>}
                         </div>
                     </div>
-                )
-                    : <Spinner classes={'w-full min-h-[60vh] h-full flex justify-center flex-col items-center'} />}
+                )}
+                {
+                    status === 'loading' && <Spinner classes={'w-full min-h-[60vh] h-full flex justify-center flex-col items-center'} />
+                }
+                {
+                    status === 'error' && <NotFound />
+                }
             </div>
         </div>,
         document.getElementById('popup')

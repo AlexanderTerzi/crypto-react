@@ -1,19 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectTranslations, setLang } from '../redux/slices/languageSlice';
+import { selectLanguage, selectTranslations, setLang } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 import flagUA from '../assets/img/flag_ua.png';
 import flagEN from '../assets/img/flag_en.png';
-import { t } from 'i18next';
 
 const Languages = () => {
     const dispatch = useDispatch();
     const t = useSelector(selectTranslations);
 
-    const { darkTheme } = useSelector((state => state.theme))
-    const supportedLangs = useSelector((state) => state.language.supportedLangs);
-    const currentLang = useSelector((state) => state.language.lang);
+    const { darkTheme } = useSelector(selectTheme);
+    const { supportedLangs, lang } = useSelector(selectLanguage);
 
     const [openLanguage, setOpenLanguage] = useState(false);
     const languageRef = useRef();
@@ -32,7 +31,7 @@ const Languages = () => {
         document.body.addEventListener('click', handleOutsideClick);
     }, []);
 
-
+    const currentLang = lang;
 
     return (
         <div

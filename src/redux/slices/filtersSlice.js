@@ -67,5 +67,7 @@ const filtersSlice = createSlice({
     }
 });
 
+export const selectFilters = ((state) => state.filters);
+
 export const { setCurrency, setSortBy, setPage, setItemsPerPage, setTotalPages, setCoinSearch, setSearchData } = filtersSlice.actions;
 export default filtersSlice.reducer;

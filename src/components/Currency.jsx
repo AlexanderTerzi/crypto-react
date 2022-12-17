@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setCurrency } from '../redux/slices/filtersSlice';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 const currencyTypes = [
     { value: 'usd', name: 'usd' },
@@ -18,9 +19,9 @@ const currencyTypes = [
 
 const Currency = () => {
     const dispatch = useDispatch();
-    const t = useSelector(selectTranslations);
 
-    const { darkTheme } = useSelector(state => state.theme);
+    const t = useSelector(selectTranslations);
+    const { darkTheme } = useSelector(selectTheme);
 
     const currencyRef = useRef(null);
 

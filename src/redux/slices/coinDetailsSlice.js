@@ -44,5 +44,7 @@ const filtersSlice = createSlice({
     }
 });
 
+export const selectCoinDetails = ((state) => state.coinDetail);
+
 export const { setCoinData } = filtersSlice.actions;
 export default filtersSlice.reducer;

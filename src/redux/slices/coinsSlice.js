@@ -47,5 +47,7 @@ const coinsSlice = createSlice({
     }
 });
 
+export const selectCoins = ((state) => state.coins);
+
 export const { setCryptoData } = coinsSlice.actions;
 export default coinsSlice.reducer;

@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSavedCoins, setSavedCoinsArr } from '../redux/slices/savedCoinsSlice';
+import { fetchSavedCoins, selectSavedCoins, setSavedCoinsArr } from '../redux/slices/savedCoinsSlice';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
+import { selectFilters } from '../redux/slices/filtersSlice';
 
 import SaveBtn from '../components/UI/SaveBtn';
 import ErrorBlock from '../components/ErrorBlock';
@@ -12,9 +14,9 @@ const Saved = () => {
     const dispatch = useDispatch();
     const t = useSelector(selectTranslations);
 
-    const { savedCoins, savedCoinsArr, status } = useSelector(state => state.savedCoins);
-    const { darkTheme } = useSelector(state => state.theme);
-    const { currency, sortBy } = useSelector(state => state.filters)
+    const { savedCoins, savedCoinsArr, status } = useSelector(selectSavedCoins);
+    const { darkTheme } = useSelector(selectTheme);
+    const { currency, sortBy } = useSelector(selectFilters)
 
     const getSavedData = async (totalCoins) => {
         totalCoins = savedCoins;

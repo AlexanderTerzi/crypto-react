@@ -2,20 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
-import coinGeckoLogo from '../assets/img/coingecko-logo.webp';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectFilters } from '../redux/slices/filtersSlice';
+import { selectCoins } from '../redux/slices/coinsSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 import Pagination from './Pagination';
 import SaveBtn from './UI/SaveBtn';
 import Spinner from './UI/Spinner';
 import ErrorBlock from './ErrorBlock';
+import coinGeckoLogo from '../assets/img/coingecko-logo.webp';
 
 const Table = () => {
     const t = useSelector(selectTranslations);
 
-    const { currency } = useSelector(state => state.filters);
-    const { cryptoData, status } = useSelector(state => state.coins);
-    const { darkTheme } = useSelector(state => state.theme);
+    const { currency } = useSelector(selectFilters);
+    const { cryptoData, status } = useSelector(selectCoins);
+    const { darkTheme } = useSelector(selectTheme);
 
     return (
         <>

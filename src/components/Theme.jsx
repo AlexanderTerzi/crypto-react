@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setTheme } from '../redux/slices/themeSlice';
+import { selectTheme, setTheme } from '../redux/slices/themeSlice';
 import { selectTranslations } from '../redux/slices/languageSlice';
 
 import ReactSwitch from 'react-switch';
@@ -9,7 +9,7 @@ import ReactSwitch from 'react-switch';
 const Theme = () => {
     const t = useSelector(selectTranslations);
     const dispatch = useDispatch();
-    const { darkTheme } = useSelector(state => state.theme);
+    const { darkTheme } = useSelector(selectTheme);
 
     const handleSwitchTheme = () => {
         dispatch(setTheme(!darkTheme));

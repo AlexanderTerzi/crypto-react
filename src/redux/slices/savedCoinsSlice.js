@@ -56,5 +56,7 @@ const savedCoinsSlice = createSlice({
     }
 });
 
+export const selectSavedCoins = ((state) => state.savedCoins)
+
 export const { setSavedCoins, setSavedCoinsArr } = savedCoinsSlice.actions;
 export default savedCoinsSlice.reducer;

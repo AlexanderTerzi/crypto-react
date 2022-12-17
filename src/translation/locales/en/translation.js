@@ -55,4 +55,6 @@ export const enTranslation = {
     "reload": "Reload",
     "noCoinsError": "A loading error occurred, please try to reload the page.",
     "toCoins": "To coins",
+    "page404Title": "This page does not exist",
+    "page404Button": "Main page",
 }

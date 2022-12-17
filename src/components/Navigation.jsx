@@ -3,10 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 const Navigation = () => {
     const t = useSelector(selectTranslations);
-    const { darkTheme } = useSelector(state => state.theme);
+    const { darkTheme } = useSelector(selectTheme);
 
     const navStyles = `${darkTheme ? 'border-cyan' : 'border-gray-100'} w-[40%] mt-12 flex justify-around align-middle border rounded-lg lg:w-[400px] md:mt-10 ssm:w-[90%]`;
 

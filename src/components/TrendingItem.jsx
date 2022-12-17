@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 import Spinner from './UI/Spinner';
 
 const TrendingItem = ({ data }) => {
     const navigate = useNavigate();
-    const t = useSelector(selectTranslations);
 
-    const { darkTheme } = useSelector(state => state.theme);
+    const t = useSelector(selectTranslations);
+    const { darkTheme } = useSelector(selectTheme);
 
     const getCoinDetails = (id) => {
         navigate(`${id}`);

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectTranslations } from '../redux/slices/languageSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 const ErrorBlock = () => {
-    const { darkTheme } = useSelector(state => state.theme);
+    const { darkTheme } = useSelector(selectTheme);
     const t = useSelector(selectTranslations)
 
     const refreshPage = () => {

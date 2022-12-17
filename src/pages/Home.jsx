@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems, setCryptoData } from '../redux/slices/coinsSlice';
-import { setTotalPages } from '../redux/slices/filtersSlice';
+import { selectFilters, setTotalPages } from '../redux/slices/filtersSlice';
+import { selectTheme } from '../redux/slices/themeSlice';
 
 import Logo from '../components/Logo';
 import Navigation from '../components/Navigation';
@@ -13,8 +14,8 @@ import Theme from '../components/Theme';
 const Home = () => {
     const dispatch = useDispatch();
 
-    const { currency, sortBy, page, itemsPerPage, coinSearch } = useSelector(state => state.filters);
-    const { darkTheme } = useSelector(state => state.theme);
+    const { currency, sortBy, page, itemsPerPage, coinSearch } = useSelector(selectFilters);
+    const { darkTheme } = useSelector(selectTheme);
 
     useEffect(() => {
         const getCryptoData = async () => {
