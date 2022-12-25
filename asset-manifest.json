@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/crypto-react/static/css/main.6363ca16.css",
-    "main.js": "/crypto-react/static/js/main.de43b181.js",
+    "main.js": "/crypto-react/static/js/main.95c709fe.js",
     "static/media/coingecko-logo.webp": "/crypto-react/static/media/coingecko-logo.eb6ba13c54aba28a0109.webp",
     "static/media/logo.svg": "/crypto-react/static/media/logo.2ce8e122c6cf18ca3c25b2b663398aab.svg",
     "index.html": "/crypto-react/index.html",
     "main.6363ca16.css.map": "/crypto-react/static/css/main.6363ca16.css.map",
-    "main.de43b181.js.map": "/crypto-react/static/js/main.de43b181.js.map"
+    "main.95c709fe.js.map": "/crypto-react/static/js/main.95c709fe.js.map"
   },
   "entrypoints": [
     "static/css/main.6363ca16.css",
-    "static/js/main.de43b181.js"
+    "static/js/main.95c709fe.js"
   ]
 }
