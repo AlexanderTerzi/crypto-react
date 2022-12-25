@@ -17,13 +17,13 @@ const Navigation: React.FC = () => {
 
     return (
         <nav className={navStyles}>
-            <NavLink to='/' className={navLinkStyles}>
+            <NavLink to={`${process.env.PUBLIC_URL}/`} className={navLinkStyles}>
                 {t.crypto}
             </NavLink>
-            <NavLink to='/trending' className={navLinkStyles}>
+            <NavLink to={`${process.env.PUBLIC_URL}/trending`} className={navLinkStyles}>
                 {t.trending}
             </NavLink>
-            <NavLink to='/saved' className={navLinkStyles}>
+            <NavLink to={`${process.env.PUBLIC_URL}/saved`} className={navLinkStyles}>
                 {t.saved}
             </NavLink>
         </nav>

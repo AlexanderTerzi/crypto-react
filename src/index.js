@@ -16,7 +16,7 @@ import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: `${process.env.PUBLIC_URL}/`,
     element: <Home />,
     children: [
       {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "trending",
+        path: `${process.env.PUBLIC_URL}/trending`,
         element: <Trending />,
         children: [
           {
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "saved",
+        path: `${process.env.PUBLIC_URL}/saved`,
         element: <Saved />,
         children: [
           {
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "*",
+        path: `${process.env.PUBLIC_URL}/*`,
         element: <NotFound />,
       },
     ],

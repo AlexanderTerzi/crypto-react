@@ -11,7 +11,7 @@ const Logo: React.FC = () => {
     const linkStyles = `${darkTheme ? 'text-cyan' : 'text-gray-300'} absolute top-[1.5rem] left-[1.5rem] [text-decoration:none] text-lg flex items-center`;
 
     return (
-        <Link to='/' className={linkStyles}>
+        <Link to={`${process.env.PUBLIC_URL}/`} className={linkStyles}>
             <img src={logoImg} alt="Crypto" />
             <span>
                 Crypto 24/7

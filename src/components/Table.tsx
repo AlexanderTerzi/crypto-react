@@ -60,7 +60,7 @@ const Table: React.FC = () => {
                                                 className={`${darkTheme ? 'hover:bg-gray-200' : 'hover:bg-dirty_white-200'} text-center text-base border-b border-gray-100 ease-in duration-200 last:border-0 ssm:text-sm`}>
                                                 <td className='py-4 flex items-center uppercase'>
                                                     <SaveBtn data={data} />
-                                                    <Link to={`/${data.id}`} className='flex items-center'>
+                                                    <Link to={`${process.env.PUBLIC_URL}/${data.id}`} className='flex items-center'>
                                                         <img
                                                             className='w-[1.2rem] h-[1.2rem] mx-1.5 mt-[2px]'
                                                             src={data.image}
@@ -73,7 +73,7 @@ const Table: React.FC = () => {
 
                                                 </td>
                                                 <td className='py-4'>
-                                                    <Link to={`/${data.id}`}>
+                                                    <Link to={`${process.env.PUBLIC_URL}/${data.id}`}>
                                                         {data.name}
                                                     </Link>
                                                 </td>

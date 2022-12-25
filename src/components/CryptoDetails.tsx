@@ -64,7 +64,7 @@ const CryptoDetails: React.FC = () => {
     }, [coinId]);
 
     const closePage = () => {
-        navigate("..")
+        navigate(`${process.env.PUBLIC_URL}/`)
     };
 
     return ReactDOM.createPortal(

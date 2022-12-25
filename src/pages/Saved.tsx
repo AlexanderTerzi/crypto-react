@@ -62,7 +62,7 @@ const Saved: React.FC = () => {
                                                 className={`${darkTheme ? 'hover:bg-gray-200' : 'hover:bg-dirty_white-200'} text-center text-base border-b border-gray-100 ease-in duration-200`}>
                                                 <td className='py-4 flex items-center uppercase'>
                                                     <SaveBtn data={data} />
-                                                    <Link to={`${data.id}`} className='flex items-center'>
+                                                    <Link to={`${process.env.PUBLIC_URL}/${data.id}`} className='flex items-center'>
                                                         <img
                                                             className='w-[1.2rem] h-[1.2rem] mx-1.5 mt-[2px]'
                                                             src={data.image}
@@ -75,7 +75,7 @@ const Saved: React.FC = () => {
 
                                                 </td>
                                                 <td className='py-4'>
-                                                    <Link to={`${data.id}`}>
+                                                    <Link to={`${process.env.PUBLIC_URL}/${data.id}`}>
                                                         {data.name}
                                                     </Link>
                                                 </td>
@@ -112,7 +112,7 @@ const Saved: React.FC = () => {
                             {t.noSavedCoins}
                         </h1>
                         <Link
-                            to='/'
+                            to={`${process.env.PUBLIC_URL}/`}
                             className='bg-cyan w-[200px] text-gray-300 py-1 mt-6 flex items-center justify-center text-[16px] hover:bg-gray-100 ease-in duration-200'>
                             {t.toCoins}
                         </Link>

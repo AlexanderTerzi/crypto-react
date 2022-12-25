@@ -30,7 +30,7 @@ const NotFound: React.FC = () => {
             <h1>
                 {t.page404Title}
             </h1>
-            <Link to='/' className='bg-cyan w-[200px] text-gray-300 py-1 mt-6 flex items-center justify-center text-[16px] hover:bg-gray-100 ease-in duration-200'>
+            <Link to={`${process.env.PUBLIC_URL}/`} className='bg-cyan w-[200px] text-gray-300 py-1 mt-6 flex items-center justify-center text-[16px] hover:bg-gray-100 ease-in duration-200'>
                 {t.page404Button}
             </Link>
         </div>
